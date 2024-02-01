@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  frontend:
+    image: knight-challenge-front
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
+
+  backend:
+    image: knight-challenge-back
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
